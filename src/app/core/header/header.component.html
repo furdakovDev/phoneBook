@@ -1,0 +1,27 @@
+<app-loader></app-loader>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="nav navbar-nav">
+          <li
+            routerLinkActive="active"
+            class="nav-item"
+            [routerLinkActiveOptions]="{exact: true}">
+            <a id="home" class="nav-link" routerLink="/home"><h6>home</h6></a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="/phone-book"><h6>phone book</h6></a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto">
+          <ng-template [ngIf]="!(authState | async).authenticated">
+            <li routerLinkActive="active"><a class="nav-link" id="signin" routerLink="/auth/signin"><h6>sign in</h6></a></li>
+            <li routerLinkActive="active"><a class="nav-link" id="signup" routerLink="/auth/signup"><h6>register</h6></a></li>
+          </ng-template>
+
+          <li><a class="nav-link" id="currentUserName" *ngIf="(authState | async).authenticated"><h6>{{(authState | async).user}}</h6></a></li>
+          <li><a class="nav-link" id="logout" style="cursor: pointer;" (click)="onLogOut()" *ngIf="(authState | async).authenticated"><h6>Logout</h6></a></li>
+        </ul>
+      </div>
+  </div>
+</nav>

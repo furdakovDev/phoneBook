@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="col col-sm-6">
+      <h5>Please provide your email and password:</h5>
+      <form (ngSubmit)="onSignin(f)" #f="ngForm">
+        <div class="form-group">
+          <input
+            placeholder="Your Email"
+            class="form-control"
+            type="email"
+            id="email"
+            name="email"
+            ngModel
+            required>
+        </div>
+        <div class="form-group">
+          <input
+            placeholder="Your Password"
+            class="form-control"
+            type="password"
+            id="password"
+            name="password"
+            ngModel
+            required>
+        </div>
+        <button class="btn btn-success" type="submit" [disabled]="!signupForm.valid">Login</button>
+        <button class="btn btn-primary" type="button" [disabled]="!signupForm.dirty" (click)="onClear()">Clear</button>
+      </form>
+    </div>
+  </div>

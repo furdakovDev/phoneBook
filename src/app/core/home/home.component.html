@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="col">
+    <h1 *ngIf="!(authState | async).authenticated">Please Sign In or Register to use Phone Book!</h1>
+    <ng-template [ngIf]="(authState | async).authenticated">
+      <h1>Welcome to Phone Book!</h1>
+      <button class="btn-get-started" (click)="onClick()">get started</button>
+    </ng-template>
+  </div>
+</div>
+
+

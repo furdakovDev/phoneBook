@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="col-md-4">
+      <h4>Contact Details: </h4>
+      <br>
+      <h6>Contact ID: {{(contact | async).editingContact.id}}</h6>
+      <h6>First Name: {{(contact | async).editingContact.firstName}}</h6>
+      <h6>Last Name: {{(contact | async).editingContact.lastName}}</h6>
+      <h6>Phone Number: {{(contact | async).editingContact.phone}}</h6>
+      <h6>Gender: {{(contact | async).editingContact.gender}}</h6>
+      <br>
+      <button class="btn btn-primary" (click)="routeOut()">Close</button>
+  </div>
+</div>

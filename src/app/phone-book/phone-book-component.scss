@@ -1,0 +1,47 @@
+.container {
+  height: calc(100% - 180px);
+  position: relative;
+  text-align: center
+}
+
+ag-grid-angular {
+  opacity: 0.8;
+  text-align: left;
+  font-size: 16px;
+}
+
+.btn {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  background: transparent;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 30px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin: 8px;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.btn-success:hover {
+  background: #2dc997;
+  border: 2px solid #2dc997;
+}
+
+.btn-primary:hover {
+  background: #0206c5;
+  border: 2px solid #0206c5;
+}
+
+.btn-default:hover {
+  background: #c2c2c2;
+  border: 2px solid #c2c2c2;
+}
+
+.btn-danger:hover {
+  background: #c2004b;
+  border: 2px solid #c2004b;
+}

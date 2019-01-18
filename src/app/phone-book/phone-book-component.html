@@ -1,0 +1,24 @@
+<div class="container">
+      <ag-grid-angular
+        style="width: 100%; height: 100%;"
+        #agGrid
+        class="ag-theme-balham-dark"
+        [enableSorting]="true"
+        [enableFilter]="true"
+        [animateRows]="true"
+        [gridOptions]="gridOptions"
+        [rowData]="(rowData | async).contacts"
+        [pagination]="true"
+        [paginationAutoPageSize]="true"
+        (rowSelected)="onSelectedRow()"
+        appGridResize>
+      </ag-grid-angular>
+      <div class="d-inline">
+        <button class="btn btn-success" (click)="onAddNewContact()">Add New</button>
+        <button [disabled]="!rowSelected" class="btn btn-primary" (click)="onEditContact()">Edit</button>
+        <button [disabled]="!rowSelected" class="btn btn-default" (click)="onShowContactDetails()">Details</button>
+        <button [disabled]="!rowSelected" class="btn btn-danger" (click)="onContactDelete()">Delete</button>
+      </div>
+</div>
+
+
