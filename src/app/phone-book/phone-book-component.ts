@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { GridOptions } from 'ag-grid-community/main';
 import { HttpClient } from '@angular/common/http';
 import { GenderCellRendererComponent } from '../shared/components/gender-cell-renderer/gender-cell-renderer.component';
-import { Contact } from '../shared/interfaces/contact.interface';
+import { Contact } from './contact.model';
 import { ActivatedRoute, Router} from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
 
 import * as fromPhoneBook from './store/phone-book.reducers';
 import * as PhoneBookActions from './store/phone-book.actions';
-import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-phone-book',
@@ -17,12 +17,10 @@ import {take} from 'rxjs/operators';
   styleUrls: ['./phone-book-component.scss']
 })
 export class PhoneBookComponent implements OnInit {
-
-    phoneBookState: Observable<fromPhoneBook.State>;
-    rowData: any;
-    private gridOptions: GridOptions;
-    private selectedRow: Contact;
-    private rowSelected: boolean;
+    rowData: Observable<fromPhoneBook.State>;
+    gridOptions: GridOptions;
+    selectedRow: Contact;
+    rowSelected: boolean;
 
     constructor(private http: HttpClient,
                 private router: Router,
@@ -53,9 +51,10 @@ export class PhoneBookComponent implements OnInit {
       ];
     }
 
-    deleteContactInGrid(id: string) {
+    deleteContactInGrid() {
+      const rowToDelete = this.gridOptions.api.getSelectedRows();
       this.gridOptions.api.updateRowData({
-        remove: this.gridOptions.api.getSelectedRows()
+        remove: rowToDelete
         });
     }
 
@@ -70,8 +69,8 @@ export class PhoneBookComponent implements OnInit {
           if (contacts.length === 0) {
             this.store.dispatch(new PhoneBookActions.GetContacts());
           }
-            this.phoneBookState = this.store.select('contacts');
-            this.rowData = this.phoneBookState;
+            this.rowData = this.store.select('contacts');
+            // this.rowData = this.phoneBookState;
         });
     }
 
@@ -95,7 +94,7 @@ export class PhoneBookComponent implements OnInit {
     }
 
     onContactDelete() {
-      this.deleteContactInGrid(this.selectedRow.id);
+      this.deleteContactInGrid();
       this.store.dispatch(new PhoneBookActions.DeleteContact(+this.selectedRow.id));
       this.store.dispatch(new PhoneBookActions.DeleteFromServer());
     }

@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Params, Router} from '@angular/router';
-import { Contact } from '../../shared/interfaces/contact.interface';
+import { ActivatedRoute, Router} from '@angular/router';
+import { Contact } from '../contact.model';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
 
 import * as fromPhoneBook from '../store/phone-book.reducers';
 import * as PhoneBookActions from '../store/phone-book.actions';
-import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-phone-book-form',
@@ -17,8 +17,6 @@ import {take} from 'rxjs/operators';
 
 export class PhoneBookFormComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-
-  submitted = false;
   editMode = false;
   contactId: string;
   contact: Contact;
@@ -53,9 +51,9 @@ export class PhoneBookFormComponent implements OnInit, OnDestroy {
       this.contactId = this.route.snapshot.params['id'];
       this.subscription = this.route.params
         .subscribe(
-          (params: Params) => {
+          () => {
             this.store.dispatch(new PhoneBookActions.StartEditing(+this.contactId));
-            this.getContactFromStore(this.contactId);
+            this.getContactFromStore();
           }
         );
     } else {
@@ -64,23 +62,23 @@ export class PhoneBookFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  getContactFromStore(id: string) {
+  getContactFromStore() {
     this.store.select('contacts', 'editingContact')
       .pipe(take(1))
       .subscribe((contact) => {
-          this.onFullfilForm(contact);
+          this.setFormValue(contact);
         }
       );
   }
 
-  onFullfilForm(contact: any) {
+  setFormValue(contact: any) {
     delete contact.id;
     contact.telCode = '380';
     this.signupForm.setValue(contact);
   }
 
   onSubmit() {
-    this.contact = Object.assign({}, {
+      this.contact = Object.assign({}, {
       firstName: this.signupForm.value.firstName,
       lastName: this.signupForm.value.lastName,
       phone: this.signupForm.value.telCode + this.signupForm.value.phone,
@@ -94,7 +92,6 @@ export class PhoneBookFormComponent implements OnInit, OnDestroy {
     } else {
       this.store.dispatch(new PhoneBookActions.AddContact(this.contact));
     }
-    this.submitted = true;
     this.store.dispatch(new PhoneBookActions.StoreContact());
     this.signupForm.reset();
   }

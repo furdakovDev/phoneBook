@@ -1,7 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { ContactDetailComponent } from './contact-detail.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ContactService } from '../../shared/services/contact.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ContactDetailComponent', () => {
@@ -13,9 +12,6 @@ describe('ContactDetailComponent', () => {
       ],
       declarations: [
         ContactDetailComponent,
-      ],
-      providers: [
-        ContactService
       ]
     }).compileComponents();
   }));

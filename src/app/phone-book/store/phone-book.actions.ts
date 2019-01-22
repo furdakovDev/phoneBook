@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Contact } from 'src/app/shared/interfaces/contact.interface';
+import { Contact } from '../contact.model';
 
 export const ADD_CONTACT = 'ADD_CONTACT';
 export const DELETE_CONTACT = 'DELETE_CONTACT';

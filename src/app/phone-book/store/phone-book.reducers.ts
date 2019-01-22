@@ -1,4 +1,4 @@
-import { Contact } from '../../shared/interfaces/contact.interface';
+import { Contact } from '../contact.model';
 
 import * as PhoneBookActions from './phone-book.actions';
 

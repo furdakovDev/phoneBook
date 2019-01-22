@@ -1,7 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { SignupComponent } from './signup.component';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../shared/services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SignupComponent', () => {
@@ -14,7 +13,6 @@ describe('SignupComponent', () => {
         FormsModule,
         RouterTestingModule
       ],
-      providers: [AuthService]
     }).compileComponents();
   }));
 

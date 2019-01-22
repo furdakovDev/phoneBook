@@ -1,6 +1,5 @@
 import { TestBed, async } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
-import { AuthService } from '../shared/services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HomeComponent', () => {
@@ -11,8 +10,7 @@ describe('HomeComponent', () => {
       ],
       declarations: [
         HomeComponent
-      ],
-      providers: [AuthService]
+      ]
     }).compileComponents();
   }));
 

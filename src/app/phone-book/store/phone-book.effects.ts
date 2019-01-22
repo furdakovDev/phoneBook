@@ -1,6 +1,6 @@
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import {map, switchMap, withLatestFrom} from 'rxjs/operators';
-import { Contact } from '../../shared/interfaces/contact.interface';
+import { map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { Contact } from '../contact.model';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';

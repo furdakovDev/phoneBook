@@ -2,7 +2,6 @@ import { TestBed, async } from '@angular/core/testing';
 import { PhoneBookComponent } from './phone-book-component';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
-import { ContactService } from '../shared/services/contact.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PhoneBookComponent', () => {
@@ -15,9 +14,6 @@ describe('PhoneBookComponent', () => {
       ],
       declarations: [
         PhoneBookComponent,
-      ],
-      providers: [
-        ContactService
       ]
     }).compileComponents();
   }));

@@ -2,7 +2,6 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { PhoneBookFormComponent } from './phone-book-form-component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ContactService } from '../../shared/services/contact.service';
 import {HttpClientModule} from '@angular/common/http';
 import {By} from '@angular/platform-browser';
 
@@ -17,8 +16,7 @@ describe('PhoneBookForm Component tests', () => {
          ReactiveFormsModule,
          RouterTestingModule,
          HttpClientModule,
-       ],
-       providers: [ContactService]
+       ]
      }).compileComponents();
 
      fixture = TestBed.createComponent(PhoneBookFormComponent);
